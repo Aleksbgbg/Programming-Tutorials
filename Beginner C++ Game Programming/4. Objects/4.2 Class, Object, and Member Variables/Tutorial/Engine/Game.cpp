@@ -22,25 +22,22 @@ void Game::UpdateModel()
 
 void Game::ComposeFrame()
 {
-	int x = 400;
-	int y = 300;
-	
 	if (wnd.kbd.KeyIsPressed(VK_LEFT))
 	{
-		x -= 100;
+		x -= 3;
 	}
 	else if (wnd.kbd.KeyIsPressed(VK_RIGHT))
 	{
-		x += 100;
+		x += 3;
 	}
 
 	if (wnd.kbd.KeyIsPressed(VK_UP))
 	{
-		y -= 100;
+		y -= 3;
 	}
 	else if (wnd.kbd.KeyIsPressed(VK_DOWN))
 	{
-		y += 100;
+		y += 3;
 	}
 
 	const int green = wnd.kbd.KeyIsPressed(VK_CONTROL) ? 0 : 255;

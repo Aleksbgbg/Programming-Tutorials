@@ -20,4 +20,7 @@ private:
 private:
 	MainWindow & wnd;
 	Graphics gfx;
+
+	int x = 400;
+	int y = 300;
 };
