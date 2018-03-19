@@ -30,4 +30,9 @@ private:
 	int green = 255;
 
 	bool shapeIsChanged = false;
+
+	bool pressedLeft = false;
+	bool pressedRight = false;
+	bool pressedUp = false;
+	bool pressedDown = false;
 };

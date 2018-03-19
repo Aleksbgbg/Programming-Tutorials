@@ -20,20 +20,54 @@ void Game::UpdateModel()
 {
 	if (wnd.kbd.KeyIsPressed(VK_LEFT))
 	{
-		xVelocity -= 3;
+		if (!pressedLeft)
+		{
+			xVelocity -= 1;
+			pressedLeft = true;
+		}
 	}
-	else if (wnd.kbd.KeyIsPressed(VK_RIGHT))
+	else
 	{
-		xVelocity += 3;
+		pressedLeft = false;
+	}
+	
+	if (wnd.kbd.KeyIsPressed(VK_RIGHT))
+	{
+		if (!pressedRight)
+		{
+			xVelocity += 1;
+			pressedRight = true;
+		}
+	}
+	else
+	{
+		pressedRight = false;
 	}
 
 	if (wnd.kbd.KeyIsPressed(VK_UP))
 	{
-		yVelocity -= 3;
+		if (!pressedUp)
+		{
+			yVelocity -= 1;
+			pressedUp = true;
+		}
 	}
-	else if (wnd.kbd.KeyIsPressed(VK_DOWN))
+	else
 	{
-		yVelocity += 3;
+		pressedUp = false;
+	}
+	
+	if (wnd.kbd.KeyIsPressed(VK_DOWN))
+	{
+		if (!pressedDown)
+		{
+			yVelocity += 1;
+			pressedDown = true;
+		}
+	}
+	else
+	{
+		pressedDown = false;
 	}
 
 	x += xVelocity;
