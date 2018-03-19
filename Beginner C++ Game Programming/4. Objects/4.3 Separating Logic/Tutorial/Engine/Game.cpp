@@ -20,21 +20,24 @@ void Game::UpdateModel()
 {
 	if (wnd.kbd.KeyIsPressed(VK_LEFT))
 	{
-		x -= 3;
+		xVelocity -= 3;
 	}
 	else if (wnd.kbd.KeyIsPressed(VK_RIGHT))
 	{
-		x += 3;
+		xVelocity += 3;
 	}
 
 	if (wnd.kbd.KeyIsPressed(VK_UP))
 	{
-		y -= 3;
+		yVelocity -= 3;
 	}
 	else if (wnd.kbd.KeyIsPressed(VK_DOWN))
 	{
-		y += 3;
+		yVelocity += 3;
 	}
+
+	x += xVelocity;
+	y += yVelocity;
 
 	green = wnd.kbd.KeyIsPressed(VK_CONTROL) ? 0 : 255;
 
