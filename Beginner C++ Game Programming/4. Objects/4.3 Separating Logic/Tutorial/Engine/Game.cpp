@@ -18,10 +18,6 @@ void Game::Go()
 
 void Game::UpdateModel()
 {
-}
-
-void Game::ComposeFrame()
-{
 	if (wnd.kbd.KeyIsPressed(VK_LEFT))
 	{
 		x -= 3;
@@ -40,9 +36,14 @@ void Game::ComposeFrame()
 		y += 3;
 	}
 
-	const int green = wnd.kbd.KeyIsPressed(VK_CONTROL) ? 0 : 255;
+	green = wnd.kbd.KeyIsPressed(VK_CONTROL) ? 0 : 255;
 
-	if (wnd.kbd.KeyIsPressed(VK_SHIFT)) // Box
+	shapeIsChanged = wnd.kbd.KeyIsPressed(VK_SHIFT);
+}
+
+void Game::ComposeFrame()
+{
+	if (shapeIsChanged) // Box
 	{
 		// Horizontal line (top)
 		gfx.PutPixel(x - 5, y + 5, 255, green, 255);

@@ -23,4 +23,8 @@ private:
 
 	int x = 400;
 	int y = 300;
+
+	int green = 255;
+
+	bool shapeIsChanged = false;
 };
