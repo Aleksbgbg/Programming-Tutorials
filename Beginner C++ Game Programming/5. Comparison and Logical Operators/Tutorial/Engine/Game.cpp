@@ -76,19 +76,23 @@ void Game::UpdateModel()
 	if (x - 5 < 0)
 	{
 		x = 5;
+		xVelocity = 0;
 	}
 	else if (x + 5 > Graphics::ScreenWidth - 1)
 	{
 		x = Graphics::ScreenWidth - 6;
+		xVelocity = 0;
 	}
 	
 	if (y - 5 < 0)
 	{
 		y = 5;
+		yVelocity = 0;
 	}
 	else if (y + 5 > Graphics::ScreenHeight - 1)
 	{
 		y = Graphics::ScreenHeight - 6;
+		yVelocity = 0;
 	}
 
 	green = wnd.kbd.KeyIsPressed(VK_CONTROL) ? 0 : 255;
