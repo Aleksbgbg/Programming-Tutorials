@@ -95,7 +95,7 @@ void Game::UpdateModel()
 		yVelocity = 0;
 	}
 
-	green = wnd.kbd.KeyIsPressed(VK_CONTROL) ? 0 : 255;
+	green = 300 < x && x < 500 ? 0 : 255;
 
 	shapeIsChanged = wnd.kbd.KeyIsPressed(VK_SHIFT);
 }
