@@ -4,7 +4,9 @@
 Game::Game(MainWindow& wnd)
 	:
 	wnd(wnd),
-	gfx(wnd)
+	gfx(wnd),
+	boxMovable{ 250, 250 },
+	boxStationary{ 250, 250 }
 {
 }
 
@@ -70,88 +72,13 @@ void Game::UpdateModel()
 		pressedDown = false;
 	}
 
-	x += xVelocity;
-	y += yVelocity;
+	boxMovable.MoveBy(xVelocity, yVelocity);
 
-	if (x - 5 < 0)
-	{
-		x = 5;
-		xVelocity = 0;
-	}
-	else if (x + 5 > Graphics::ScreenWidth - 1)
-	{
-		x = Graphics::ScreenWidth - 6;
-		xVelocity = 0;
-	}
-	
-	if (y - 5 < 0)
-	{
-		y = 5;
-		yVelocity = 0;
-	}
-	else if (y + 5 > Graphics::ScreenHeight - 1)
-	{
-		y = Graphics::ScreenHeight - 6;
-		yVelocity = 0;
-	}
-
-	green = 300 < x && x < 500 ? 0 : 255;
-
-	shapeIsChanged = wnd.kbd.KeyIsPressed(VK_SHIFT);
+	boxStationary.SetGreen(boxMovable.IsCollision(boxStationary) ? 0 : 255);
 }
 
 void Game::ComposeFrame()
 {
-	if (shapeIsChanged) // Box
-	{
-		// Horizontal line (top)
-		gfx.PutPixel(x - 5, y + 5, 255, green, 255);
-		gfx.PutPixel(x - 4, y + 5, 255, green, 255);
-		gfx.PutPixel(x - 3, y + 5, 255, green, 255);
-		gfx.PutPixel(x + 3, y + 5, 255, green, 255);
-		gfx.PutPixel(x + 4, y + 5, 255, green, 255);
-		gfx.PutPixel(x + 5, y + 5, 255, green, 255);
-
-		// Horizontal line (bottom)
-		gfx.PutPixel(x - 5, y - 5, 255, green, 255);
-		gfx.PutPixel(x - 4, y - 5, 255, green, 255);
-		gfx.PutPixel(x - 3, y - 5, 255, green, 255);
-		gfx.PutPixel(x + 3, y - 5, 255, green, 255);
-		gfx.PutPixel(x + 4, y - 5, 255, green, 255);
-		gfx.PutPixel(x + 5, y - 5, 255, green, 255);
-
-		// Vertical line (left)
-		gfx.PutPixel(x - 5, y - 5, 255, green, 255);
-		gfx.PutPixel(x - 5, y - 4, 255, green, 255);
-		gfx.PutPixel(x - 5, y - 3, 255, green, 255);
-		gfx.PutPixel(x - 5, y + 3, 255, green, 255);
-		gfx.PutPixel(x - 5, y + 4, 255, green, 255);
-		gfx.PutPixel(x - 5, y + 5, 255, green, 255);
-
-		// Vertical line (right)
-		gfx.PutPixel(x + 5, y - 5, 255, green, 255);
-		gfx.PutPixel(x + 5, y - 4, 255, green, 255);
-		gfx.PutPixel(x + 5, y - 3, 255, green, 255);
-		gfx.PutPixel(x + 5, y + 3, 255, green, 255);
-		gfx.PutPixel(x + 5, y + 4, 255, green, 255);
-		gfx.PutPixel(x + 5, y + 5, 255, green, 255);
-	}
-	else // Reticle
-	{
-		// Horizontal line
-		gfx.PutPixel(x - 5, y, 255, green, 255);
-		gfx.PutPixel(x - 4, y, 255, green, 255);
-		gfx.PutPixel(x - 3, y, 255, green, 255);
-		gfx.PutPixel(x + 3, y, 255, green, 255);
-		gfx.PutPixel(x + 4, y, 255, green, 255);
-		gfx.PutPixel(x + 5, y, 255, green, 255);
-
-		// Vertical line
-		gfx.PutPixel(x, y - 5, 255, green, 255);
-		gfx.PutPixel(x, y - 4, 255, green, 255);
-		gfx.PutPixel(x, y - 3, 255, green, 255);
-		gfx.PutPixel(x, y + 3, 255, green, 255);
-		gfx.PutPixel(x, y + 4, 255, green, 255);
-		gfx.PutPixel(x, y + 5, 255, green, 255);
-	}
+	boxMovable.Draw(gfx);
+	boxStationary.Draw(gfx);
 }

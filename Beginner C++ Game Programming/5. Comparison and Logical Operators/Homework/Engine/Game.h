@@ -3,6 +3,7 @@
 #include "Graphics.h"
 #include "Keyboard.h"
 #include "Mouse.h"
+#include "Box.h"
 
 class Game
 {
@@ -21,15 +22,11 @@ private:
 	MainWindow & wnd;
 	Graphics gfx;
 
-	int x = 400;
-	int y = 300;
-
 	int xVelocity = 0;
 	int yVelocity = 0;
 
-	int green = 255;
-
-	bool shapeIsChanged = false;
+	Box boxMovable;
+	Box boxStationary;
 
 	bool pressedLeft = false;
 	bool pressedRight = false;
