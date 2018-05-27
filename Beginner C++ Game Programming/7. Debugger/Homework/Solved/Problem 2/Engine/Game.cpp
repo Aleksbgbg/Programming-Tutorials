@@ -77,7 +77,7 @@ void Game::ComposeFrame()
 
 	if( colliding )
 	{
-		DrawBox( y_mobile,x_mobile,255,0,0 );
+		DrawBox( x_mobile,y_mobile,255,0,0 );
 	}
 	else
 	{

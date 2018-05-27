@@ -59,7 +59,7 @@ void Game::UpdateModel()
 	}
 
 	x_mobile = ClampScreenX( x_mobile );
-	y_mobile = ClampScreenX( y_mobile );
+	y_mobile = ClampScreenY( y_mobile );
 
 	colliding = 
 		OverlapTest( x_fixed0,y_fixed0,x_mobile,y_mobile ) ||

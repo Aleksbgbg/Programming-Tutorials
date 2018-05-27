@@ -46,8 +46,8 @@ private:
 	Graphics gfx;
 	/********************************/
 	/*  User Variables              */
-	int x_fixed0;
-	int y_fixed0;
+	int x_fixed0 = 215;
+	int y_fixed0 = 240;
 	int x_fixed1 = 215;
 	int y_fixed1 = 200;
 	int x_fixed2 = 200;
