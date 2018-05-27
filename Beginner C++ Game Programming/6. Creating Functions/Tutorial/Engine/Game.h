@@ -26,7 +26,11 @@ private:
 	int yVelocity = 0;
 
 	Box boxMovable;
-	Box boxStationary;
+
+	Box boxStationary0;
+	Box boxStationary1;
+	Box boxStationary2;
+	Box boxStationary3;
 
 	bool pressedLeft = false;
 	bool pressedRight = false;
