@@ -25,57 +25,23 @@ void Game::UpdateModel()
 {
 	if (wnd.kbd.KeyIsPressed(VK_LEFT))
 	{
-		if (!pressedLeft)
-		{
-			xVelocity -= 1;
-			pressedLeft = true;
-		}
-	}
-	else
-	{
-		pressedLeft = false;
+		boxMovable.MoveBy(-1, 0);
 	}
 	
 	if (wnd.kbd.KeyIsPressed(VK_RIGHT))
 	{
-		if (!pressedRight)
-		{
-			xVelocity += 1;
-			pressedRight = true;
-		}
-	}
-	else
-	{
-		pressedRight = false;
+		boxMovable.MoveBy(1, 0);
 	}
 
 	if (wnd.kbd.KeyIsPressed(VK_UP))
 	{
-		if (!pressedUp)
-		{
-			yVelocity -= 1;
-			pressedUp = true;
-		}
-	}
-	else
-	{
-		pressedUp = false;
+		boxMovable.MoveBy(0, -1);
 	}
 	
 	if (wnd.kbd.KeyIsPressed(VK_DOWN))
 	{
-		if (!pressedDown)
-		{
-			yVelocity += 1;
-			pressedDown = true;
-		}
+		boxMovable.MoveBy(0, 1);
 	}
-	else
-	{
-		pressedDown = false;
-	}
-
-	boxMovable.MoveBy(xVelocity, yVelocity);
 
 	if (boxMovable.IsCollision(boxStationary0) ||
 		boxMovable.IsCollision(boxStationary1) ||
