@@ -18,6 +18,9 @@ private:
 	void ComposeFrame();
 	void UpdateModel();
 
+	static int ClampBoxHorizontal(const Box& box);
+	static int ClampBoxVertical(const Box& box);
+
 private:
 	MainWindow & wnd;
 	Graphics gfx;

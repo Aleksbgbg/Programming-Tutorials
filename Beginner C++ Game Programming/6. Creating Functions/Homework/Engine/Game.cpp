@@ -43,6 +43,8 @@ void Game::UpdateModel()
 		boxMovable.MoveBy(0, 1);
 	}
 
+	boxMovable.SetPosition(ClampBoxHorizontal(boxMovable), ClampBoxVertical(boxMovable));
+
 	if (boxMovable.IsCollision(boxStationary0) ||
 		boxMovable.IsCollision(boxStationary1) ||
 		boxMovable.IsCollision(boxStationary2) ||
@@ -54,6 +56,36 @@ void Game::UpdateModel()
 	{
 		boxMovable.SetGreen(255);
 	}
+}
+
+int Game::ClampBoxHorizontal(const Box& box)
+{
+	if (box.GetX() < Box::CenterBorderDistance)
+	{
+		return Box::CenterBorderDistance;
+	}
+
+	if (box.GetX() >= Graphics::ScreenWidth - Box::CenterBorderDistance)
+	{
+		return Graphics::ScreenWidth - Box::CenterBorderDistance - 1;
+	}
+
+	return box.GetX();
+}
+
+int Game::ClampBoxVertical(const Box& box)
+{
+	if (box.GetY() < Box::CenterBorderDistance)
+	{
+		return Box::CenterBorderDistance;
+	}
+
+	if (box.GetY() >= Graphics::ScreenHeight - Box::CenterBorderDistance)
+	{
+		return Graphics::ScreenHeight - Box::CenterBorderDistance - 1;
+	}
+
+	return box.GetY();
 }
 
 void Game::ComposeFrame()

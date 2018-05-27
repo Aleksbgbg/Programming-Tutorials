@@ -13,10 +13,20 @@ Box::Box(const int x, const int y)
 {
 }
 
+int Box::GetX() const
+{
+	return x;
+}
+
+int Box::GetY() const
+{
+	return y;
+}
+
 bool Box::IsCollision(const Box& source) const
 {
-	return (source.x - 5) <= (x + 5) && (x - 5) <= (source.x + 5) &&
-		   (source.y - 5) <= (y + 5) && (y - 5) <= (source.y + 5);
+	return (source.x - CenterBorderDistance) <= (x + CenterBorderDistance) && (x - CenterBorderDistance) <= (source.x + CenterBorderDistance) &&
+		   (source.y - CenterBorderDistance) <= (y + CenterBorderDistance) && (y - CenterBorderDistance) <= (source.y + CenterBorderDistance);
 }
 
 void Box::MoveBy(const int x, const int y)
@@ -63,4 +73,10 @@ void Box::Draw(Graphics& gfx) const
 void Box::SetGreen(const int value)
 {
 	green = value;
+}
+
+void Box::SetPosition(const int x, const int y)
+{
+	this->x = x;
+	this->y = y;
 }
