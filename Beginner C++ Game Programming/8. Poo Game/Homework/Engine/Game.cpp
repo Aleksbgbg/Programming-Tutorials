@@ -28,6 +28,17 @@ Game::Game(MainWindow& wnd)
 
 	poo2X = pooHorizontalDistribution(randomEngine);
 	poo2Y = pooVerticalDistribution(randomEngine);
+
+	const std::uniform_int_distribution<int> velocityDistribution{ 0, 1 };
+
+	poo0VelocityX = velocityDistribution(randomEngine) == 0 ? -1 : 1;
+	poo0VelocityY = velocityDistribution(randomEngine) == 0 ? -1 : 1;
+
+	poo1VelocityX = velocityDistribution(randomEngine) == 0 ? -1 : 1;
+	poo1VelocityY = velocityDistribution(randomEngine) == 0 ? -1 : 1;
+
+	poo2VelocityX = velocityDistribution(randomEngine) == 0 ? -1 : 1;
+	poo2VelocityY = velocityDistribution(randomEngine) == 0 ? -1 : 1;
 }
 
 void Game::Go()
@@ -67,6 +78,45 @@ void Game::UpdateModel()
 	{
 		return;
 	}
+
+	if (IsOutOfBounds(poo0X, PooDimension, Graphics::ScreenWidth))
+	{
+		poo0VelocityX = -poo0VelocityX;
+	}
+
+	if (IsOutOfBounds(poo0Y, PooDimension, Graphics::ScreenHeight))
+	{
+		poo0VelocityY = -poo0VelocityY;
+	}
+
+	if (IsOutOfBounds(poo1X, PooDimension, Graphics::ScreenWidth))
+	{
+		poo1VelocityX = -poo1VelocityX;
+	}
+
+	if (IsOutOfBounds(poo1Y, PooDimension, Graphics::ScreenHeight))
+	{
+		poo1VelocityY = -poo1VelocityY;
+	}
+
+	if (IsOutOfBounds(poo2X, PooDimension, Graphics::ScreenWidth))
+	{
+		poo2VelocityX = -poo2VelocityX;
+	}
+
+	if (IsOutOfBounds(poo2Y, PooDimension, Graphics::ScreenHeight))
+	{
+		poo2VelocityY = -poo2VelocityY;
+	}
+
+	poo0X += poo0VelocityX;
+	poo0Y += poo0VelocityY;
+
+	poo1X += poo1VelocityX;
+	poo1Y += poo1VelocityY;
+
+	poo2X += poo2VelocityX;
+	poo2Y += poo2VelocityY;
 
 	if (!poo0IsEaten && Overlap(dudeX, dudeY, DudeDimension, DudeDimension, poo0X, poo0Y, PooDimension, PooDimension))
 	{
@@ -128,6 +178,11 @@ int Game::ClampScreen(const int position, const int dimension, const int furthes
 	}
 
 	return position;
+}
+
+bool Game::IsOutOfBounds(const int position, const int dimension, const int furthestPosition) const
+{
+	return 0 >= position || position + dimension >= furthestPosition;
 }
 
 void Game::ComposeFrame()

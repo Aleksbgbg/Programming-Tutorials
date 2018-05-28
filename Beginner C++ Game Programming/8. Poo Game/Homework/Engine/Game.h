@@ -25,6 +25,8 @@ private:
 
 	int ClampScreen(const int position, const int dimension, const int furthestPosition) const;
 
+	bool IsOutOfBounds(const int position, const int dimension, const int furthestPosition) const;
+
 private:
 	MainWindow& wnd;
 	Graphics gfx;
@@ -47,6 +49,15 @@ private:
 
 	int poo2X;
 	int poo2Y;
+
+	int poo0VelocityX = 1;
+	int poo0VelocityY = 1;
+
+	int poo1VelocityX = 1;
+	int poo1VelocityY = 1;
+
+	int poo2VelocityX = 1;
+	int poo2VelocityY = 1;
 
 	bool poo0IsEaten = false;
 	bool poo1IsEaten = false;
