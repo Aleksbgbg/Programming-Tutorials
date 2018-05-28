@@ -11,14 +11,14 @@ Game::Game(MainWindow& wnd)
 {
 	std::mt19937 randomEngine{ std::random_device{ }() };
 
-	const std::uniform_int_distribution<int> dudeHorizontalDistribution{ 0, Graphics::ScreenWidth - DudeDimension };
-	const std::uniform_int_distribution<int> dudeVerticalDistribution{ 0, Graphics::ScreenHeight - DudeDimension };
+	const std::uniform_int_distribution<int> dudeHorizontalDistribution{ 0, Graphics::ScreenWidth - DudeDimension - 1 };
+	const std::uniform_int_distribution<int> dudeVerticalDistribution{ 0, Graphics::ScreenHeight - DudeDimension - 1 };
 
 	dudeX = dudeHorizontalDistribution(randomEngine);
 	dudeY = dudeVerticalDistribution(randomEngine);
 
-	const std::uniform_int_distribution<int> pooHorizontalDistribution{ 0, Graphics::ScreenWidth - PooDimension };
-	const std::uniform_int_distribution<int> pooVerticalDistribution{ 0, Graphics::ScreenHeight - PooDimension };
+	const std::uniform_int_distribution<int> pooHorizontalDistribution{ 0, Graphics::ScreenWidth - PooDimension - 1 };
+	const std::uniform_int_distribution<int> pooVerticalDistribution{ 0, Graphics::ScreenHeight - PooDimension - 1 };
 
 	poo0X = pooHorizontalDistribution(randomEngine);
 	poo0Y = pooVerticalDistribution(randomEngine);
